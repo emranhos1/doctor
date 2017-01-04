@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="hospitalApp">
+    <head>
+        <title>Hospital List</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <!--=========================================================================================-->
+        <script src="hospital.js" type="text/javascript"></script>
+        <!--=========================================================================================-->
+    </head>
+    <body>
+        <div class="container-fluid" ng-controller="hospitalCtrl">
+            <div class="input-group-addon" >
+                <div class="col-sm-4">
+                    <select  class="form-control" ng-model="districtSource" ng-options="x.disName for x in districts" ng-change="setDistrict(districtSource)" >
+                        <option value=''>--All District--</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select  class="form-control" ng-model="thanaSource" ng-options="x.thaName for x in thanas" ng-change="setThana(thanaSource)" >
+                        <option value=''>--All Thana--</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select  class="form-control" ng-model="locationSource" ng-options="x.hosLocation for x in hospitals" ng-change="setLocation(locationSource)" >
+                        <option value=''>--Location--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div ng-repeat="hos in hospitals">
+                    <div class="panel panel-primary" >
+                        <div class="panel-heading"> 
+                            Location : <span style="font-weight: bold; color: crimson">{{hos.hosLocation}}</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-10" >
+                                Hospital Name : <span style="font-weight: bold">{{hos.hosName}},</span><br>
+                                Address : <span style="font-weight: bold">{{hos.hosAddress}},</span><br>
+                                Contact No. : <span style="font-weight: bold">{{hos.hosPhone}},</span><br>
+                                {{hos.thaName}},{{hos.disName}}.
+
+                            </div>
+                            <div class="col-xs-2">
+                                <br><br>
+                                <!-- Trigger the modal by a button -->
+                                <button type="button" class="glyphicon glyphicon-eye-open" data-toggle="modal" data-target="#myModal" ng-click="hosDetails(hos)"></button>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div ng-repeat="hos in hospitalModals">
+                        <div class="modal-dialog ">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title">{{hos.hosName}}</h4>
+                                </div>
+                                <div class="modal-body">
+                                    Hospital Name : <span style="font-weight: bold">{{hos.hosName}},</span><br>
+                                    Address : <span style="font-weight: bold">{{hos.hosAddress}},</span><br>
+                                    Contact No. : <span style="font-weight: bold">{{hos.hosPhone}},</span><br>
+                                    {{hos.thaName}},{{hos.disName}}.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html ng-app="donarApp">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+
+        <!--=============================================================================================-->
+        <script src="donar.js" type="text/javascript"></script>
+        <!--=============================================================================================-->
+    </head>
+    <body>
+        <div class="container-fluid" ng-controller="donarCtrl">
+            <div class="input-group-addon" >
+                <div class="col-sm-4">
+                    <select  class="form-control" ng-model="districtSource" ng-options="x.disName for x in districts" ng-change="setDistrict(districtSource)" >
+                        <option value=''>--All District--</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select  class="form-control" ng-model="thanaSource" ng-options="x.thaName for x in thanas" ng-change="setThana(thanaSource)" >
+                        <option value=''>--All Thana--</option>
+                    </select>
+                </div>
+                <div class="col-sm-4">
+                    <select  class="form-control" ng-model="blGroupSource" ng-options="x.blGroName for x in blGroups" ng-change="setBlGroup(blGroupSource)" >
+                        <option value=''>--All Blood Group--</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="panel-group">
+                <div ng-repeat="au in donars">
+                    <div class="panel panel-primary" >
+                        <div class="panel-heading"> 
+                            Blood Group : <span style="font-weight: bold; color: crimson">{{au.bloodGroup}}</span>
+                        </div>
+                        <div class="panel-body">
+                            <div class="col-xs-6" >
+                                Donar Name : <span style="font-weight: bold">{{au.donName}}</span><br>
+                                Contact No. : <span style="font-weight: bold">{{au.donPhone}}</span><br>
+                                Address : {{au.thanaName}}
+                            </div>
+                            <div class="col-xs-6" >
+                                Age : {{au.donAge}}<br>
+                                Last Donate Date: <span style="font-weight: bold">{{au.donLastDonetDate}}</span><br>
+                                <span style="font-family: cursive; font-style: italic; color: #9d9d9d">(Donar can not donate again within 4 months.)</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

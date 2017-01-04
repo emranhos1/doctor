@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+        <link href="../bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../bootstrap/bootstrap/css/bootstrap.css" rel="stylesheet" type="text/css"/>
+        <link href="../bootstrap/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css"/>
+        <script src="../bootstrap/bootstrap/js/bootstrap.js" type="text/javascript"></script>
+        <script src="../bootstrap/bootstrap/js/bootstrap.min.js" type="text/javascript"></script>
+        <script src="../../../IT - Scholarship/Core course/Core java/AngularJs/JSON_01/JSON_01/web/lib/angular.min.js" type="text/javascript"></script>
+        <script src="ajax.js" type="text/javascript"></script>
+        <script src="../angular.min.js" type="text/javascript"></script>
+        <script src="angular.min.js" type="text/javascript"></script>
+        <style>
+            #rrr{
+                background-color: #afd9ee;
+                         min-height: 650px;
+            }
+        </style>
+    </head>
+    <body>
+        <div ng-controller="CourseController"  id="rrr" class="container-fluid ">            
+            <h3>Registration for doctor</h3>
+            <!--=======================entry or edit form for course=========================-->
+            <div ng-show="courseForm.myVar">
+                <form ng-submit="submitCourse()">
+                    <table class="table">
+                        <tr>
+                            <td>District</td>
+                            <td><select ng-model="myVar" class="form-control">
+                                    <option value="">Select one
+                                    <option value="dogs">Dhaka
+                                    <option value="tuts">Sherpur
+                                    <option value="cars">Bhola
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td>Thana</td>
+                            <td><select ng-model="myVar" class="form-control">
+                                    <option value="">Select one
+                                    <option value="dogs">Palton
+                                    <option value="tuts">Bashondara
+                                    <option value="cars">Sherpur
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td>Hospital</td>
+                            <td><select ng-model="myVar" class="form-control">
+                                    <option value="">Select one
+                                    <option value="dogs">Squer
+                                    <option value="tuts">Islami bank
+                                    <option value="cars">Pupolar
+                                </select>
+                                <label for="chackForm">If not exist your hospital please check this</label>
+                                <input type="checkbox" ng-model="courseForm.myVar" id="chackForm" />
+                            </td>
+                        </tr>
+
+                        <tr ng-show="courseForm.myVar">
+                            <td>Hospital</td>
+                            <td><input type="text" ng-model="courseForm.couKeyName" class="form-control" placeholder="Pupollar"/></td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td><input type="text" ng-model="courseForm.couKeyName" class="form-control" placeholder="Md. Anwar Hossain"/></td>
+                        </tr>
+                        <tr>
+                            <td>Designation</td>
+                            <td><input type="text" ng-model="courseForm.couName"  class="form-control" placeholder="Consultant, Professor"/></td>
+                        </tr>
+                        <tr>
+                            <td>Speciality</td>
+                            <td><select ng-model="myVar" class="form-control">
+                                    <option value="">Select one
+                                    <option value="dogs">Nuromedicine
+                                    <option value="tuts">Serson
+                                    <option value="cars">Medicine
+                                </select></td>
+                        </tr>
+                        <tr>
+                            <td>Gender</td>
+                            <td>
+                                <input type="radio"  ng-model="myVar" value="dogs" >Male
+                                <input type="radio" ng-model="myVar" value="tuts">Female
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>Phone number</td>
+                            <td><input type="text" ng-model="courseForm.couDuration"  class="form-control" placeholder="Work phone/Personal No"/></td>
+                        </tr>
+                        <tr>
+                            <td>E-mail :</td>
+                            <td class="form-group"><input type="email" class="form-control" id="exampleInputEmail1" placeholder="manik@gmail.com"></td>
+                            
+                        </tr>
+                        <tr>
+                            <td>BDMC reg :</td>
+                            <td><input type="text" ng-model="courseForm.couFee"  class="form-control"/></td>
+                        </tr>
+                        <tr>
+                            <td>Professional Description</td>
+                            <td><input type="text" ng-model="courseForm.couFee"  class="form-control" placeholder="Professor "/></td>
+                        </tr>
+                        <tr>
+                            <td>Medical Degree :</td>
+                            <td><input type="text" ng-model="courseForm.couContent"  class="form-control" placeholder="MBBS, FCPS(Medicine)"/></td>
+                        </tr>
+                        <tr>
+                            <td>Fee Amount :</td>
+                            <td><input type="text" ng-model="courseForm.couContent"  class="form-control" placeholder="500.00(BDT)"/></td>
+                        </tr>
+                        <tr>
+                            <td>Doctor Images :</td>
+                            <td><img ng-model="courseForm.couContent"  class="form-control"/></td>
+                        </tr>
+                        <tr>
+                            <td colspan="2"><input type="submit" value="Submit" class="btn-primary form-control" /></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <!--==================data view table for course============================-->
+            <!--            <table class="table table-hover table-responsive table-bordered" >
+                            <tr>
+                                <th>Course Key</th>
+                                <th>Course Name</th>
+                                <th>Course Duration</th>
+                                <th>Course Fee</th>
+                                <th>Operations</th>
+            
+                            </tr>
+                            <tr ng-repeat="cour in courses">
+                                <td> {{cour.couKeyName}}</td>
+                                <td >{{cour.couName}}</td>
+                                <td> {{cour.couDuration}}</td>
+                                <td >{{cour.couFee| currency : "Tk."}}</td>
+                                <td><a ng-click="editcourse(cour)" href="#courseDetails" class="btn btn-info">Edit</a> | <a ng-click="deleteCourse(cour)" class="btn btn-danger">Delete</a></td>
+                            </tr>
+                        </table>-->
+
+        </div>
+    </body>
+</html>
+
